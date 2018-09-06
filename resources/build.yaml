@@ -1,0 +1,5 @@
+- task: PowerShell@1
+  displayName: Patch Assembly Info Files
+  inputs:
+    scriptName: [% base_dir %]/AssemblyInfoPatchVersion.ps1
+    arguments: [% version %]
