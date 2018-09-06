@@ -33,6 +33,7 @@ our sub tasks (%args) {
     source => ( slurp %?RESOURCES<update-cert.json> ),
     variables => %( 
       domain => %args<domain>, # web application domain name
+      app_service => %args<app-service>, # azure app service name ( a.k web application )
     )
   );
 
@@ -41,10 +42,10 @@ our sub tasks (%args) {
     variables => %( 
       base_dir => "$build-dir/files",
       subscription => %args<subscription>, # Azure subscription,
-      keyvault-name => %args<keyvault-name>, # the name of keyvault holding certificates
-      cert-name => %args<cert-name>, # certificate name in keyvault
+      keyvault_name => %args<keyvault-name>, # the name of keyvault holding certificates
+      cert_name => %args<cert-name>, # certificate name in keyvault
       domain => %args<domain>, # web application domain name
-      app-service => %args<app-service>, # azure app service name ( a.k web application )
+      app_service => %args<app-service>, # azure app service name ( a.k web application )
     )
   );
 

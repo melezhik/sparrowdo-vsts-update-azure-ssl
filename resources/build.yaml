@@ -3,9 +3,9 @@
   inputs:
     azureSubscription: '[% subscription %]'
     scriptLocation: inlineScript
-    inlineScript: 'az keyvault certificate show  --vault-name [% vault_name %] -n [% cert_name %] -o json > [% base_dir %]/[% cert_name %]/cert.json'
+    inlineScript: 'az keyvault certificate show  --vault-name [% keyvault_name %] -n [% cert_name %] -o json > [% base_dir %]/[% cert_name %]/cert.json'
 
 
 - script: 'perl cicd/Releases/Web/inject-thumbprint.pl [% base_dir %]/[% cert_name %]' 
-  displayName: 'Inject thumbprint'
+  displayName: 'Inject thumbprint into ARM templates'
 
