@@ -11,6 +11,7 @@ Sparrowdo module to generate VSTS yaml build definitions to update Azure ssl cer
       cert-name => app-dev, # certificate name in keyvault 
       domain => "foo.bar", # web application domain name
       app-service => "foo-bar", # azure app service name ( a.k web application )
+      resource-group => "rg0102" , # azure resource group
     );
 
     $ sparrowdo --local_mode --no_sudo

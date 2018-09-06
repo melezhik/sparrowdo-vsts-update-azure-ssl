@@ -16,7 +16,25 @@ our sub tasks (%args) {
   directory "$build-dir/.cache";
   directory "$build-dir/files";
 
-  file "$build-dir/files/gene-arm.pl", %( content => slurp %?RESOURCES<gene-arm.pl>.Str );
+  file "$build-dir/files/inject-thumbprint.pl", %( content => slurp %?RESOURCES<inject-thumbprint.pl>.Str );
+
+  directory "$build-dir/files/{%args<cert-name>}";
+
+  template-create "$build-dir/files/{%args<cert-name>}/create-cert.json", %(
+    source => ( slurp %?RESOURCES<create-cert.json> ),
+    variables => %( 
+      keyvault_name => %args<keyvault-name>, # the name of keyvault holding certificates
+      cert_name => %args<cert-name>, # certificate name in keyvault
+      resource_group => %args<app-service> , # azure resource group
+    )
+  );
+
+  template-create "$build-dir/files/{%args<cert-name>}/update-cert.json", %(
+    source => ( slurp %?RESOURCES<update-cert.json> ),
+    variables => %( 
+      domain => %args<domain>, # web application domain name
+    )
+  );
 
   template-create "$build-dir/.cache/build.yaml.sample", %(
     source => ( slurp %?RESOURCES<build.yaml> ),

@@ -1,5 +1,11 @@
-- task: PowerShell@1
-  displayName: Patch Assembly Info Files
+- task: AzureCLI@1
+  displayName: 'Fetch ssl cert - [% domain %]'
   inputs:
-    scriptName: [% base_dir %]/AssemblyInfoPatchVersion.ps1
-    arguments: [% version %]
+    azureSubscription: '[% subscription %]'
+    scriptLocation: inlineScript
+    inlineScript: 'az keyvault certificate show  --vault-name [% vault_name %] -n [% cert_name %] -o json > [% base_dir %]/[% cert_name %]/cert.json'
+
+
+- script: 'perl cicd/Releases/Web/inject-thumbprint.pl [% base_dir %]/[% cert_name %]' 
+  displayName: 'Inject thumbprint'
+
