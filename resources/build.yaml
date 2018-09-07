@@ -6,6 +6,6 @@
     inlineScript: 'az keyvault certificate show  --vault-name [% keyvault_name %] -n [% cert_name %] -o json > [% base_dir %]/[% cert_name %]/cert.json'
 
 
-- script: 'perl cicd/Releases/Web/inject-thumbprint.pl [% base_dir %]/[% cert_name %]' 
+- script: 'perl [% base_dir %]/inject-thumbprint.pl [% base_dir %]/[% cert_name %]' 
   displayName: 'Inject thumbprint into ARM templates'
 
