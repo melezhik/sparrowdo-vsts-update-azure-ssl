@@ -16,6 +16,8 @@ print "x509ThumbprintHex:\t", $data->{x509ThumbprintHex}, "\n";
 print "Expires:\t\t", $data->{attributes}->{expires}, "\n";
 print "dnsNames:\t\t", join " ", @{$data->{policy}->{x509CertificateProperties}->{subjectAlternativeNames}->{dnsNames}}, "\n";
 
+print "\n\n";
+
 my $tp = $data->{x509ThumbprintHex};
 
 # update create-cert.json
@@ -29,7 +31,7 @@ open F, ">", "$dir/create-cert.json" or die $!;
 print F $d;
 close F;
 
-print "update create-cert.json OK:\n$d\n\n";
+print "update [create-cert.json] OK:\n$d\n\n";
 
 # update update-cert.json
 open F, "$dir/update-cert.json" or die $!;
@@ -42,6 +44,6 @@ open F, ">", "$dir/update-cert.json" or die $!;
 print F $d;
 close F;
 
-print "update update-cert.json OK:\n$d\n\n"
+print "update [update-cert.json] OK:\n$d\n\n"
 
 
