@@ -25,7 +25,7 @@ our sub tasks (%args) {
     variables => %( 
       keyvault_name => %args<keyvault-name>, # the name of keyvault holding certificates
       cert_name => %args<cert-name>, # certificate name in keyvault
-      resource_group => %args<resource_group> , # azure resource group
+      resource_group => %args<resource_group>, # azure resource group
     )
   );
 
