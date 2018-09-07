@@ -13,14 +13,14 @@
   inputs:
     azureSubscription: '[% subscription %]'
     scriptLocation: inlineScript
-    inlineScript: 'az group deployment create -g [% resource_group %]  --template-file [% base_dir %]/[% cert_name %]/create-cert.json'
+    inlineScript: 'az group deployment create -g [% resource_group %]  --template-file [% base_dir %]/[% cert_name %]/create-cert.json -o table'
 
 - task: AzureCLI@1
   displayName: 'ARM - assign [% cert_name %] ssl cert to [% app_service %]'
   inputs:
     azureSubscription: '[% subscription %]'
     scriptLocation: inlineScript
-    inlineScript: 'az group deployment create -g [% resource_group %]  --template-file [% base_dir %]/[% cert_name %]/update-cert.json'
+    inlineScript: 'az group deployment create -g [% resource_group %]  --template-file [% base_dir %]/[% cert_name %]/update-cert.json -o table'
 
 
 
