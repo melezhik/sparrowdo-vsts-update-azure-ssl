@@ -16,6 +16,13 @@ Sparrowdo module to generate VSTS yaml build definitions to update Azure ssl cer
 
     $ sparrowdo --local_mode --no_sudo
 
+# Agent capabilities
+
+This is the list of required tool should be installed on VSTS agent:
+
+* Perl
+* Az cli
+
 # Author
 
 Alexey Melezhik
